@@ -9,10 +9,15 @@ function buildQueryUrl() {
 
   var search = $.trim($("#search-term").val());
   var startYear = $("#start-year").val();
-
+  if (parseInt(startYear)) {
+    startYear = startYear + '0101';
+  }
   var endYear = $("#end-year").val();
+  if (parseInt(endYear)) {
+    endYear = endYear + '1231';
+  }
   var myUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?"
-  var queryURL = myUrl + "q=" + search + "&api-key=olfw5PJPxiPCBXdeZLuR47neRxgOj6ga&" + "begin_date=" + startYear + "0101&end_date=" + endYear + "1212";
+  var queryURL = myUrl + "q=" + search + "&api-key=olfw5PJPxiPCBXdeZLuR47neRxgOj6ga" + "&begin_date=" + startYear + "&end_date=" + endYear;
 
   $.ajax({
     url: queryURL,
